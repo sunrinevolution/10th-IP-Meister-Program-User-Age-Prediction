@@ -131,3 +131,6 @@ dmypy.json
 # dataset
 data/*
 !data/preprocess.py
+
+# mac
+.DS_Store
