@@ -80,7 +80,7 @@ def train(batch, epochs, num_classes, size, weights, tclasses, train_path, valid
     model = MobileNetv2((size, size, 3), num_classes)
   
   optimizer = Adam()
-  earlystop = EarlyStopping(monitor='val_acc', patience=30, verbose=0, mode='auto')
+  earlystop = EarlyStopping(monitor='val_accuracy', patience=30, verbose=0, mode='auto')
   model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
   hist = model.fit_generator(
