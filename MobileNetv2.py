@@ -1,4 +1,3 @@
-from typing import Any
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Conv2D, GlobalAveragePooling2D, Dropout, Activation, \
                                     BatchNormalization, Add, Reshape, DepthwiseConv2D, LeakyReLU

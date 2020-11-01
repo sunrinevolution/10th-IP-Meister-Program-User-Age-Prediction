@@ -1,7 +1,4 @@
 import os
-import sys
-import cv2
-import argparse
 import pandas as pd
 from MobileNetv2 import MobileNetv2
 from tensorflow.keras.optimizers import Adam
@@ -103,4 +100,4 @@ def train(batch, epochs, num_classes, size, weights, tclasses, train_path, valid
   model.save_weights('model/weights_'+train_path.split('.')[0]+'.h5')
 
 if __name__ == '__main__':
-  train(32, 10, 79, 224, False, 0, 'train.txt', 'validation.txt')
+  train(32, 100, 9, 224, False, 0, 'train.txt', 'validation.txt')

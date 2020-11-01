@@ -1,6 +1,6 @@
 import os
-import shutil
 import cv2
+from tqdm import tqdm
 
 train_list = []
 validation_list = []
@@ -24,27 +24,29 @@ try:
 except:
   pass
 
-for index, item in enumerate(train_list):
+print("Train Dataset PreProcessing Start")
+for index, item in tqdm(enumerate(train_list)):
   dir = item.split('A')[1].split('.')[0]
   try:
-    os.mkdir(f'./face/train/{dir}')
+    os.mkdir(f'./face/train/{dir[0]}0')
   except:
     pass
   image_read = cv2.imread(f'./aglined faces/{item}')
   image = cv2.resize(image_read, (224, 224), interpolation=cv2.INTER_CUBIC)
-  cv2.imwrite(f'./face/train/{dir}/{item}', image)
-  train_text += f'./face/train/{dir}/{item},{dir}\n'
+  cv2.imwrite(f'./face/train/{dir[0]}0/{item}', image)
+  train_text += f'./face/train/{dir[0]}0/{item},{dir[0]}0\n'
 
-for index, item in enumerate(validation_list):
+print("Validation Dataset PreProcessing Start")
+for index, item in tqdm(enumerate(validation_list)):
   dir = item.split('A')[1].split('.')[0]
   try:
-    os.mkdir(f'./face/validation/{dir}')
+    os.mkdir(f'./face/validation/{dir[0]}')
   except:
     pass
   image_read = cv2.imread(f'./aglined faces/{item}')
   image = cv2.resize(image_read, (224, 224), interpolation=cv2.INTER_CUBIC)
-  cv2.imwrite(f'./face/validation/{dir}/{item}', image)
-  validation_text += f'./face/validation/{dir}/{item},{dir}\n'
+  cv2.imwrite(f'./face/validation/{dir[0]}/{item}', image)
+  validation_text += f'./face/validation/{dir[0]}/{item},{dir[0]}0\n'
 
 with open('train.txt', 'a') as f:
   f.write(train_text)
